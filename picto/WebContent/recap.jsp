@@ -41,7 +41,8 @@
 			url : 'PictoUtils',
 			data : { roomName : $('#roomName').val(), userName : $('#userName').val(), option : "homeBtn" },
 			success : function(roomData) {
-				$(location).attr('href', 'idleUser.jsp');
+				//$(location).attr('href', 'idleUser.jsp');
+				$(location).attr('href', 'Idle');
 			},
 			error : function (xhr, ajaxOptions, thrownError) {
 		    	$("#msgOthers").text("recap.recapRoom() " + thrownError + ": " + xhr.responseText);

@@ -204,29 +204,30 @@ public class UtilsServlet extends HttpServlet {
 			JSONObject roomObject      = (JSONObject) application.getAttribute(strRoomName);
 			JSONArray userArr = roomObject.getJSONArray("USERS");
 			String userName   = request.getParameter("userName");
-					
+			int userPoints    = 0;		
 			for(int j = 0; j < userArr.length(); j++) {
 				JSONObject user = userArr.getJSONObject(j);
 				String auxUserName = user.getString("USERNAME");
 				
 				if(auxUserName.equalsIgnoreCase(userName)){
-					int userPoints = user.getInt("POINTS");
+					userPoints = user.getInt("POINTS");
 					userPoints++;
 							
 					user.put("POINTS", userPoints);				
 					userArr.put(j, user);
 					roomObject.put("USERS", userArr);
 					application.setAttribute(strRoomName, roomObject);
-
-					JSONObject respuesta = new JSONObject();
-					respuesta.put("POINTS", userPoints);
-							
-					response.setContentType("application/json");
-					response.setCharacterEncoding("UTF-8");
-					response.getWriter().write(respuesta.toString());
+					
 					break;
 				}
 			}
+			
+			JSONObject respuesta = new JSONObject();
+			respuesta.put("POINTS", userPoints);
+					
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(respuesta.toString());
 		}
 		
 		else if(option != null && option.equals("isFinished")) {
@@ -331,6 +332,7 @@ public class UtilsServlet extends HttpServlet {
 						}
 								
 						roomObject.put("USERS", userArr);
+						roomObject.put("PLAYERS", playerArr);
 								
 						application.setAttribute(strRoomName, roomObject);
 						System.out.println("EXIT: " + roomObject);

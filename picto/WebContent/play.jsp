@@ -150,8 +150,6 @@
 			data : { roomName : $('#roomName').val(), userName : $('#userName').val(), option : "isFinished" },
 			success : function(data) {
 				if(data.FINISHED){
-					//var variables = '?username='+$("#userName").val()+'&roomname='+$("#roomName").val()
-					//$(location).attr('href', 'recap.jsp'+variables);
 					$(location).attr('href', 'recap.jsp');
 				}
 			},
@@ -166,7 +164,7 @@
 	
 	function clickListado(){
 		if($(this).attr('id') == $("#userName").val()){
-			alert("Can't assing points to yourself");
+			alert("Can't assing points to yourself.");
 			return;	
 		}
 		

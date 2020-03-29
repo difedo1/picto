@@ -1,6 +1,7 @@
 package com.dflt.picto;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.ServletContext;
@@ -70,9 +71,12 @@ public class CreateJoinServlet extends HttpServlet {
 				
 				JSONArray usersArr = new JSONArray();
 				usersArr.put(user);
-					
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String strFecha = sdf.format(Calendar.getInstance().getTime());
+				
 				newRoom = new JSONObject();
-				newRoom.put("CREATED",       Calendar.getInstance().getTime());
+				newRoom.put("CREATEDDATE",   strFecha);
 				newRoom.put("ROOMNAME",      strRoomName);
 				newRoom.put("START",         false);
 				newRoom.put("FINISHED",      false);
@@ -92,7 +96,8 @@ public class CreateJoinServlet extends HttpServlet {
 				session.setAttribute("message",  "");
 				session.setAttribute("showMsg",  false);
 
-				response.sendRedirect("idleUser.jsp");
+				//response.sendRedirect("idleUser.jsp");
+				response.sendRedirect("Idle");
 				return;
 			}
 			else {
@@ -172,7 +177,8 @@ public class CreateJoinServlet extends HttpServlet {
 				session.setAttribute("message",  "" );
 				session.setAttribute("showMsg",  false);
 				
-				response.sendRedirect("idleUser.jsp");
+				//response.sendRedirect("idleUser.jsp");
+				response.sendRedirect("Idle");
 				return;
 			}
 		}

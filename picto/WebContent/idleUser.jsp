@@ -137,9 +137,7 @@
 			dataType : 'json',
 			data : { roomName : $('#roomName').val(), option : "listUsers" },
 			success : function(data) {
-				
-				var empty = data.length;
-				if (empty == 0){
+				if (data.length == 0){
 					$(location).attr('href', 'index.jsp');
 					return;
 				}
@@ -200,7 +198,7 @@
 		fetchUsersName();
 		setInterval(fetchUsersName, 3000);
 		
-		var isAdmin = $("#roomAdmin").val();
+		var isAdmin = ($("#roomAdmin").val() == 'true');
 		if(isAdmin){
 			$("#startBtn").click(function(){
 				$("#startBtn").prop("disabled",true);
